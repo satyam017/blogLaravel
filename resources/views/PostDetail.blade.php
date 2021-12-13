@@ -50,5 +50,26 @@
                     </div>
                 </div>
             </article>
+            <section class="">
+                <article class="flex offset-5 col-7 bg-gray-100 border-gray-200 p-4 rounded-xl ">
+                    <div class="me-3 flex-shrink-0">
+                        <img src="https://i.pravatar.cc/200" class="rounded-circle" alt="image Avtar" width="100px">
+                    </div>
+                    <header>
+                        <strong>
+                            <h3 class="font-bold">
+                                John Doe
+                            </h3>
+                            <p class="text-xs">
+                               <time>Posted 8 month ago</time>
+                            </p>
+                        </strong>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Atque autem commodi consequuntur doloribus ducimus in ipsa magni natus nemo quia ratione, rem sint soluta temporibus veritatis vitae, voluptatum! Laborum, reprehenderit.
+                        </p>
+                    </header>
+                </article>
+            </section>
         </main>
     </x-layout>
