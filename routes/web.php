@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostDetailController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\sessionsController;
+use App\Http\Controllers\PostCommentsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -46,3 +47,4 @@ Route::post('register',[RegisterController::class,'store'])->middleware('guest')
 Route::get('login', [sessionsController::class,'create'])->middleware('guest');
 Route::post('session', [sessionsController::class,'store'])->middleware('guest');
 Route::get('logout', [sessionsController::class,'destroy'])->middleware('auth');
+Route::post('posts/{post:slug}/comments',[PostCommentsController::class,'store']);

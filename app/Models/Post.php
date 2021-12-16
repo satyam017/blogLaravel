@@ -19,6 +19,10 @@ class Post extends Model
     public function author(){
         return $this->belongsTo(User::class , 'user_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class , );
+    }
     protected $guarded=[];
     protected $with = ['category','author'];
     public function scopeFilter($query, array $filters)

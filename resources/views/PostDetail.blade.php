@@ -50,26 +50,56 @@
                     </div>
                 </div>
             </article>
+
+            {{--    Comments        --}}
+
             <section class="">
-                <article class="flex offset-5 col-7 bg-gray-100 border-gray-200 p-4 rounded-xl ">
+                <article class="mt-2 flex offset-5 col-7 ">
+                    @auth
+                    <form method="POST" action="/posts/{{ $post->slug }}/comments" class="w-100 border border-gray-200 p-4 rounded-xl">
+                        @csrf
+                        <header class="flex items-center">
+                            <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}" class="rounded-circle" alt="image Avtar" >
+                            <h2 class="ml-4 text-sm ">
+                                Want to praticipate?
+                            </h2>
+                        </header>
+                        <div class="mt-6">
+                            <textarea name="body" class="w-100" cols="50" rows="10" placeholder="Think something and write it quickly you piece of shit!!">
+                            </textarea>
+                        </div>
+                        <footer class="flex justify-end mt-10">
+                            <button type="submit" class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600"> Post
+
+                            </button>
+                        </footer>
+                    </form>
+                    @else
+                        <div class="w-100 border border-gray-200 p-4 rounded-xl">
+                            <p class="mb-0 text-md text-black" "><a href="/login" style="text-decoration: none; color: #000;">Please Login To Comment your thoughts</a></p>
+                        </div>
+                    @endauth
+                </article>
+                @foreach($post->comments as $comment)
+                    <article class="mt-2 flex offset-5 col-7 bg-gray-100 border-gray-200 p-4 rounded-xl ">
                     <div class="me-3 flex-shrink-0">
-                        <img src="https://i.pravatar.cc/200" class="rounded-circle" alt="image Avtar" width="100px">
+                        <img src="https://i.pravatar.cc/200?u={{$comment->user_id}}" class="rounded-circle" alt="image Avtar" width="100px">
                     </div>
                     <header>
                         <strong>
                             <h3 class="font-bold">
-                                John Doe
+                                {{$comment->author->name}}
                             </h3>
                             <p class="text-xs">
-                               <time>Posted 8 month ago</time>
+                               <time>{{$comment->created_at->format('F j, Y g:i a')}}</time>
                             </p>
                         </strong>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Atque autem commodi consequuntur doloribus ducimus in ipsa magni natus nemo quia ratione, rem sint soluta temporibus veritatis vitae, voluptatum! Laborum, reprehenderit.
+                           {{ $comment->body }}
                         </p>
                     </header>
                 </article>
+                @endforeach
             </section>
         </main>
     </x-layout>
