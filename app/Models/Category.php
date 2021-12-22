@@ -8,7 +8,7 @@ use App\Models\Post;
 class Category extends Model
 {
     use HasFactory;
-
+//    protected $guarded=['category_id'];
 
     public function posts()
     {

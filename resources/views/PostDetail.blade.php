@@ -2,7 +2,7 @@
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                    <img src="/images/illustration-1.png" alt="" class="rounded-xl">
+                    <img src="/storage/{{  $post->thumbnail }}" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
                         Published <time>{{$post->created_at->diffForHumans()}}</time>
@@ -65,8 +65,13 @@
                             </h2>
                         </header>
                         <div class="mt-6">
-                            <textarea name="body" class="w-100" cols="50" rows="10" placeholder="Think something and write it quickly you piece of shit!!">
+                            <textarea name="body" class="w-100" cols="50" rows="10" placeholder="Think something and write it quickly you piece of shit!!" required>
                             </textarea>
+                            <p class="text-sm text-red">
+                                @error('body')
+                                <span class="text-red">{{$message}}</span>
+                                @enderror
+                            </p>
                         </div>
                         <footer class="flex justify-end mt-10">
                             <button type="submit" class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600"> Post
@@ -76,7 +81,7 @@
                     </form>
                     @else
                         <div class="w-100 border border-gray-200 p-4 rounded-xl">
-                            <p class="mb-0 text-md text-black" "><a href="/login" style="text-decoration: none; color: #000;">Please Login To Comment your thoughts</a></p>
+                            <p class="mb-0 text-md text-black"><a href="/login" style="text-decoration: none; color: #000;">Please Login To Comment your thoughts</a></p>
                         </div>
                     @endauth
                 </article>

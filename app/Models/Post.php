@@ -4,12 +4,13 @@ namespace App\Models;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','excerpt','body'];  // This is used protect user to manupulate the entry in database. So everything expect this columns will ignore
+   protected $fillable = ['title','slug','excerpt','body','category_id','user_id','thumbnail'];  // This is used protect user to manupulate the entry in database. So everything expect this columns will ignore
 
 
     public function category()
@@ -18,6 +19,7 @@ class Post extends Model
     }
     public function author(){
         return $this->belongsTo(User::class , 'user_id');
+
     }
     public function comments()
     {
